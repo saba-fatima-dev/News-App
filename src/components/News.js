@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 
+const apiKey = process.env.REACT_APP_API_KEY
+
 export class News extends Component {
   static defaultProps = {
     category: 'general',
@@ -23,7 +25,7 @@ export class News extends Component {
   }
 
   async updateNews(){
-    const url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&apiKey=17110a04110142b1a9dd693739f7ddb8&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&apiKey=${apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({loading: true});
     let data = await fetch(url);
     let parsedData = await data.json();
